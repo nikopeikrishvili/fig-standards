@@ -1,4 +1,4 @@
-Basic Coding Standard
+კოდის წერის მარტივი სტანდარტები
 =====================
 
 This section of the standard comprises what should be considered the standard
@@ -14,12 +14,12 @@ interpreted as described in [RFC 2119].
 [PSR-4]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md
 
 
-1. Overview
+1. მიმოხილვა
 -----------
 
-- Files MUST use only `<?php` and `<?=` tags.
+- ფაილში უნდა იყოს გამოყენებული მხოლოდ `<?php` ან `<?=` ტეგები.
 
-- Files MUST use only UTF-8 without BOM for PHP code.
+- ფაილმა უნდა გამოიყენოს მხოლოდ UTF-8 without BOM კოდირება PHP კოდისთვის.
 
 - Files SHOULD *either* declare symbols (classes, functions, constants, etc.)
   *or* cause side-effects (e.g. generate output, change .ini settings, etc.)
