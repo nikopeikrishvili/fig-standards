@@ -1,32 +1,26 @@
-Autoloading Standard
+ავტოჩატვირთვის სტანდარტები
 ====================
 
-> **Deprecated** - As of 2014-10-21 PSR-0 has been marked as deprecated. [PSR-4] is now recommended
-as an alternative.
+> **უარყოფილი** - 2014-10-21 ში PSR-0 მოინიშნა როგორც უარყოფილი. [PSR-4] არის ალტერნატივა რომელსაც ჩვენ ვუწევთ რეკომენდაციას.
 
 [PSR-4]: http://www.php-fig.org/psr/psr-4/
 
-The following describes the mandatory requirements that must be adhered
-to for autoloader interoperability.
+ქვევით მოყვანილი აუცილებელი პირობები რომელიც უნდა იყოს გათვალისწინებული
+ავტოჩატვირთვის თავსებადობისთვის
 
 Mandatory
 ---------
 
-* A fully-qualified namespace and class must have the following
-  structure `\<Vendor Name>\(<Namespace>\)*<Class Name>`
-* Each namespace must have a top-level namespace ("Vendor Name").
-* Each namespace can have as many sub-namespaces as it wishes.
-* Each namespace separator is converted to a `DIRECTORY_SEPARATOR` when
-  loading from the file system.
-* Each `_` character in the CLASS NAME is converted to a
-  `DIRECTORY_SEPARATOR`. The `_` character has no special meaning in the
-  namespace.
-* The fully-qualified namespace and class are suffixed with `.php` when
-  loading from the file system.
-* Alphabetic characters in vendor names, namespaces, and class names may
-  be of any combination of lower case and upper case.
+* Class ს ან Namespace უნდა ქონდეს დაცული შემდეგი სტრუქტურა `\<Vendor Name>\(<Namespace>\)*<Class Name>`
+* ყოველ namespace ს უნდა ქონდეს ზემდგომი namespace ("Vendor Name").
+* ყოველ namespace ს შეიძლება ქონდეს განუსაზღვრელი რაოდენობის ქვე-namespace ები.
+* ყოველი namespace ის სეპარატორი ითვლება `დირექტორიის სეპარატორი` როდესაც ცდება ჩატვირთვა ფაილთა სისტემიდან.
+* ყოველი `_` სიმბოლო  class ის სახელში კონვერტირდება
+  `დირექტორიის სეპარატორი` - ად. სიმბოლო `_` - ს არ აქვს რაიმე დანიშნულება namespace ში
+* namespace და class სუფიქსი უნდა იყოს `.php` როდესაც იტვირთებიან ფაილთა სისტემიდან.
+* Avendor, namespaces, and class სახელში შეიძლება იყოს კომბინირებულები მაღალი და დაბალი რეგისტრების ასოებისგან.
 
-Examples
+მაგალითები
 --------
 
 * `\Doctrine\Common\IsolatedClassLoader` => `/path/to/project/lib/vendor/Doctrine/Common/IsolatedClassLoader.php`
@@ -34,22 +28,21 @@ Examples
 * `\Zend\Acl` => `/path/to/project/lib/vendor/Zend/Acl.php`
 * `\Zend\Mail\Message` => `/path/to/project/lib/vendor/Zend/Mail/Message.php`
 
-Underscores in Namespaces and Class Names
+ქვედა ტირეები `_`  Namespaces სა და Class ებში
 -----------------------------------------
 
 * `\namespace\package\Class_Name` => `/path/to/project/lib/vendor/namespace/package/Class/Name.php`
 * `\namespace\package_name\Class_Name` => `/path/to/project/lib/vendor/namespace/package_name/Class/Name.php`
 
-The standards we set here should be the lowest common denominator for
-painless autoloader interoperability. You can test that you are
-following these standards by utilizing this sample SplClassLoader
-implementation which is able to load PHP 5.3 classes.
+სტანდარტებს რომლებსაც ვაყალიბებთ აქ არიან დომინირების ყველაზე დაბალ საფეხურზე
+იმისთვის რომ კოდი იყოს თავსებადი ავტოჩატვირთვასთან. თქვენ შეგიძლიათ გატესტოთ
+თქვენი კოდის თავსებადობა ამ სტანდართთან SplClassLoader ის გამოყენებით 
+რომელსაც შეუძლია klassების ჩატვირთვა PHP ის 5.3 ვერსიაზე.
 
-Example Implementation
+მაგალითის იმპლემენტაცია
 ----------------------
 
-Below is an example function to simply demonstrate how the above
-proposed standards are autoloaded.
+ქვევით მოყვანილი ფუნქციონალის დემონსტრაცია რომელიც იცავს მოცემულ სტანდარტს.
 
 ~~~php
 <?php
@@ -71,13 +64,12 @@ function autoload($className)
 spl_autoload_register('autoload');
 ~~~
 
-SplClassLoader Implementation
+SplClassLoader - ის იმპლემენტაცია
 -----------------------------
 
-The following gist is a sample SplClassLoader implementation that can
-load your classes if you follow the autoloader interoperability
-standards proposed above. It is the current recommended way to load PHP
-5.3 classes that follow these standards.
+მოცამული gist არის მარტივი იმპლემენტაცია SplClassLoader რომელსაც შეუძლია ჩატვირთოს 
+თქვენი კლასები მოცემული სტანდარტების დაცვით. ამ ეტაპზე ეს არის რეკომენდირებული ხერხი
+PHP class ების ჩატვირთვისთვის 5.4 ვერსიაში
 
 * [http://gist.github.com/221634](http://gist.github.com/221634)
 
